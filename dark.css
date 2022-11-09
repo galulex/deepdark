@@ -1,0 +1,17 @@
+html:not(img):not(video):not(button):not(a):not(canvas):not(svg) {
+  filter: contrast(1.4);
+  background-color: #000 !important;
+}
+
+img, video, button, a, svg, canvas, [data-a-target="player-overlay-click-handler"] {
+  filter: contrast(0.8);
+}
+
+/* Zoom arrow fix */
+.speaker-bar-container__arrow {
+  border: solid #ccc !important;
+}
+
+::-webkit-scrollbar-track {
+  background-color: black;
+}
