@@ -13,7 +13,7 @@
   ],
   "content_scripts": [
     {
-      "matches": ["https://*/*"],
+      "matches": ["https://*/*", "http://*/*"],
       "css": ["dark.css"],
       "js": ["dark.js"]
     }
