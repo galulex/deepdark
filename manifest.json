@@ -1,16 +1,24 @@
 {
   "manifest_version": 3,
-  "name": "Deep Dark",
-  "description": "Enabled deep dark mode for web pages and dev tools. Saves energy with OLED screens",
+  "name": "Oled Dark",
+  "description": "Enable deep dark mode for web pages and dev tools. Saves energy with OLED screens like on Mac M1 Pro.",
   "version": "1.0",
   "icons": {
     "128": "128.png"
   },
  "devtools_page": "devtools.html",
   "permissions": [
-    "notifications",
-    "scripting"
+    "tabs",
+    "scripting",
+    "storage"
   ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
   "content_scripts": [
     {
       "matches": ["https://*/*", "http://*/*"],

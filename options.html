@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Settings</title>
+  </head>
+  <style type="text/css" media="screen">
+    body {
+    }
+
+    label {
+      user-select: none;
+      cursor: pointer;
+    }
+
+    input {
+      transform: scale(1.4);
+      display: inline-block;
+      vertical-align: middle;
+    }
+  </style>
+  <body>
+    <p>
+      Enable <a href="chrome://flags/#enable-force-dark" target="_blank">Auto Dark Mode for Web Contents</a>
+    </p>
+    <p>
+      <small>Enabled with selective inversion of non-image elements</small> is recommended
+    </p>
+    <label>
+      <input type="checkbox" name="tab2window" id="tab2window">&nbsp;
+      Open <b>Tab</b> as a new <b>Window</b>
+    </label>
+    <script src='options.js'></script>
+  </body>
+</html>
