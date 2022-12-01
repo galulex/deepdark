@@ -5,8 +5,6 @@ async function tabToWindow(id, { url }, { windowId }) {
   if (!tab2window || !url) return
   const tabs = await chrome.tabs.query({ windowId })
   if (tabs.length < 2) return
-  console.log(url)
-  console.log(tabs)
   chrome.tabs.remove(id, () => {
     chrome.windows.create({ url, focused: true })
   })
