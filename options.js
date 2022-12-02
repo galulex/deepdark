@@ -9,5 +9,12 @@ const load = () => {
   })
 }
 
+const openLink = () => {
+  chrome.tabs.create({
+    url: 'chrome://flags/#enable-force-dark'
+  });
+}
+
 document.getElementById('tab2window').addEventListener('change', save)
 document.addEventListener('DOMContentLoaded', load)
+document.getElementById('settingsLink').addEventListener('click', openLink)

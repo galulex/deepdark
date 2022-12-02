@@ -5,6 +5,8 @@
   </head>
   <style type="text/css" media="screen">
     body {
+      background-color: #2C2C2F;
+      color: #FFF;
     }
 
     label {
@@ -17,10 +19,16 @@
       display: inline-block;
       vertical-align: middle;
     }
+
+    .link {
+      text-decoration: underline;
+      cursor: pointer;
+      color: #9cd1ff;
+    }
   </style>
   <body>
     <p>
-      Enable <a href="chrome://flags/#enable-force-dark" target="_blank">Auto Dark Mode for Web Contents</a>
+      Enable <a class="link" id="settingsLink">Auto Dark Mode for Web Contents</a>
     </p>
     <p>
       <small>Enabled with selective inversion of non-image elements</small> is recommended
