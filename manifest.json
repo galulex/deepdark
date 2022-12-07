@@ -6,8 +6,12 @@
   "icons": {
     "128": "128.png"
   },
+  "action": {
+    "default_title": "Toggle Dark Mode"
+  },
  "devtools_page": "devtools.html",
   "permissions": [
+    "activeTab",
     "tabs",
     "scripting",
     "storage"
