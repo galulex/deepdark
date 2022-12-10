@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="250" alt="Dark Reader's mascot" src="https://user-images.githubusercontent.com/25508494/206875813-52317dfc-22f7-47c3-8693-e6466053b30c.png">
+  <img width="250" alt="OLED DARK IMG" src="https://user-images.githubusercontent.com/25508494/206875813-52317dfc-22f7-47c3-8693-e6466053b30c.png">
 </p>
 <p align="center">
   Saves energy with <strong>OLED screens</strong>
