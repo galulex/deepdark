@@ -9,12 +9,15 @@
   "action": {
     "default_title": "Toggle Dark Mode"
   },
- "devtools_page": "devtools.html",
+  "devtools_page": "devtools.html",
   "permissions": [
     "activeTab",
     "tabs",
     "scripting",
     "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
   ],
   "background": {
     "service_worker": "background.js"
@@ -23,11 +26,9 @@
     "page": "options.html",
     "open_in_tab": false
   },
-  "content_scripts": [
-    {
-      "matches": ["https://*/*", "http://*/*"],
-      "css": ["dark.css"],
-      "js": ["dark.js"]
-    }
-  ]
+  "content_scripts": [{
+    "matches": ["https://*/*", "http://*/*"],
+    "css": ["dark.css"],
+    "js": ["dark.js"]
+  }]
 }
