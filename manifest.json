@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Oled Dark",
+  "name": "BlaCKout",
   "description": "Enable deep dark mode for web pages and dev tools. Saves energy with OLED screens like on Mac M1 Pro.",
   "version": "1.0",
   "icons": {

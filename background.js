@@ -53,18 +53,6 @@ async function tabToWindow(id, { url }, { windowId }) {
   })
 }
 
-const createAlert = () => {
-  const alert = document.body.createElement("div")
-  alert.setAttribute("class", "deep-dark-alert")
-
-  alert.createElement("p")
-  alert.createElement("button")
-
-  console.log(alert)
-
-  document.body.appendChild(alert)
-}
-
 async function onClick(tab) {
   let urls;
   const url = new URL(tab.url);
