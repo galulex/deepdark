@@ -1,20 +1,47 @@
 chrome.tabs.onUpdated.addListener(tabToWindow)
 chrome.action.onClicked.addListener(onClick)
 
-const checkBlockList = async (tabId, changeInfo, tab) => {
-  const { blockListUrls } = await chrome.storage.sync.get();
-
-  const url = new URL(tab.url);
-
-  if (blockListUrls?.includes(url.hostname)) {
-    chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      func: toggle,
-    });
+chrome.scripting.getRegisteredContentScripts().then((result) => {
+  if (!(result || []).some((v) => v.id == "darkVersion")) {
+    chrome.scripting.registerContentScripts([{
+      id: "darkVersion",
+      matches: ["https://*/*", "http://*/*"],
+      excludeMatches: [],
+      css: ["dark.css"],
+      js: ["dark.js"]
+    }])
   }
-};
 
-chrome.tabs.onUpdated.addListener(checkBlockList);
+  if (!(result || []).some((v) => v.id == "lightVersion")) {
+    chrome.scripting.registerContentScripts([{
+      id: "lightVersion",
+      matches: ["https://example.com/"],
+      css: [],
+      js: ["light.js"]
+    }])
+  }
+})
+
+const handleStorageChanges = async (changes, namespace) => {
+  if (namespace == "sync") {
+    for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
+      if (key == "blockListUrls") {
+        const matches = newValue?.map((v) => [`http://${v}/*`, `https://${v}/*`])?.flat();
+
+        await chrome.scripting.updateContentScripts([{
+          id: "darkVersion", excludeMatches: matches
+        }])
+
+        await chrome.scripting.updateContentScripts([{
+          id: "lightVersion",
+          matches: ["https://example.com/"].concat(matches)
+        }])
+      }
+    }
+  };
+}
+
+chrome.storage.onChanged.addListener(handleStorageChanges);
 
 async function tabToWindow(id, { url }, { windowId }) {
   const { tab2window } = await chrome.storage.sync.get()
@@ -26,12 +53,19 @@ async function tabToWindow(id, { url }, { windowId }) {
   })
 }
 
-async function onClick(tab) {
-  chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    func: toggle,
-  });
+const createAlert = () => {
+  const alert = document.body.createElement("div")
+  alert.setAttribute("class", "deep-dark-alert")
 
+  alert.createElement("p")
+  alert.createElement("button")
+
+  console.log(alert)
+
+  document.body.appendChild(alert)
+}
+
+async function onClick(tab) {
   let urls;
   const url = new URL(tab.url);
 
@@ -41,20 +75,12 @@ async function onClick(tab) {
     if (!blockListUrls?.length) {
       urls = [url.hostname];
     } else if (blockListUrls.includes(url.hostname)) {
-      urls = blockListUrls.filter((v) => v != url.hostname);
+      urls = blockListUrls.filter((v) => !v.includes(url.hostname));
     } else {
       urls = blockListUrls.concat(url.hostname);
     }
 
-    chrome.storage.sync.set({ blockListUrls: urls });
+    chrome.storage.sync.set({ blockListUrls: urls })
+    chrome.tabs.reload(tab.id)
   });
-}
-
-function toggle() {
-  const meta = document.head.querySelector('meta[name="color-scheme"]') || document.createElement('meta')
-  meta.name = 'color-scheme'
-  if (meta.content === 'only light') return meta.remove()
-
-  meta.content = 'only light'
-  document.head.appendChild(meta)
 }
