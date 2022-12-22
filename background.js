@@ -72,3 +72,9 @@ async function onClick(tab) {
     chrome.tabs.reload(tab.id)
   });
 }
+
+chrome.runtime.onInstalled.addListener(openOptions)
+
+function openOptions(details) {
+  if (details?.reason === 'install') chrome.runtime.openOptionsPage()
+}
