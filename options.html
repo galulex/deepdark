@@ -8,7 +8,7 @@
       background-color: #2C2C2F;
       color: #FFF;
       padding: 1rem;
-      min-height: 200px;
+      min-height: 500px;
     }
 
     label {
@@ -29,9 +29,8 @@
 
     datalist {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       justify-content: space-between;
-      writing-mode: vertical-lr;
       width: 200px;
     }
 
@@ -42,6 +41,11 @@
     input[type="range"] {
       width: 200px;
       margin: 0;
+    }
+
+    .preview {
+      border-radius: 1rem;
+      filter: contrast(var(--contrast, 1));
     }
   </style>
   <body>
@@ -56,18 +60,21 @@
     <input type="range" min="0" max="1" step="0.1" id="contrast" name="contrast" list="contrasts"/>
     <br>
     <datalist id='contrasts'>
-      <option value="0"></option>
-      <option value="0.1"></option>
-      <option value="0.2"></option>
-      <option value="0.3"></option>
-      <option value="0.4"></option>
-      <option value="0.5"></option>
-      <option value="0.6"></option>
-      <option value="0.7"></option>
-      <option value="0.8"></option>
-      <option value="0.9"></option>
-      <option value="1"></option>
+      <option value="0">0</option>
+      <option value="0.1">1</option>
+      <option value="0.2">2</option>
+      <option value="0.3">3</option>
+      <option value="0.4">4</option>
+      <option value="0.5">5</option>
+      <option value="0.6">6</option>
+      <option value="0.7">7</option>
+      <option value="0.8">8</option>
+      <option value="0.9">9</option>
+      <option value="1">10</option>
     </datalist>
+    <br>
+    <img src="colorbands.png" class="preview"/>
+    <br>
     <br>
     <details>
       <summary>

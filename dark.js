@@ -16,7 +16,7 @@ const setTheme = () => {
 
   chrome.storage.sync.get({ contrast: '0.4' }, ({ contrast }) => {
     document.documentElement.style.setProperty('--blackout-contrast', 1 + +(contrast))
-    document.documentElement.style.setProperty('--blackout-contrast-balance', 1 - (+(contrast) / 2) )
+    document.documentElement.style.setProperty('--blackout-contrast-balance', 1 - (+(contrast) / 4) )
   })
 }
 

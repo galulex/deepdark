@@ -14,7 +14,13 @@ const openLink = () => {
   chrome.tabs.create({ url: 'chrome://flags/#enable-force-dark' })
 }
 
+const preview = (event) => {
+  const { target: { value } } = event
+  document.documentElement.style.setProperty('--contrast', 1 + +(value))
+}
+
 document.getElementById('tab2window').addEventListener('change', save)
 document.getElementById('contrast').addEventListener('change', save)
+document.getElementById('contrast').addEventListener('change', preview)
 document.getElementById('settingsLink').addEventListener('click', openLink)
 document.addEventListener('DOMContentLoaded', load)
