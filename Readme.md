@@ -1,3 +1,9 @@
+Advandateges between other extensions:
+
+- 💻 Open Source
+- ❄️ Tiny
+- 🛞 Does not implement the wheel. (Chrome alredy has force dark mode flag)
+
 <p align="center">
   <img width="250" alt="OLED DARK IMG" src="https://user-images.githubusercontent.com/25508494/206875813-52317dfc-22f7-47c3-8693-e6466053b30c.png">
 </p>
