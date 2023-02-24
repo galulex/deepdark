@@ -6,7 +6,7 @@
 </p>
 <br/>
 <p align="center">
-  <a rel="noreferrer noopener" href="#"><img alt="Chrome Web Store" src="https://user-images.githubusercontent.com/25508494/206876349-a62f0255-6efc-4096-82bd-3a52369fa10b.jpg"></a>
+  <a href="https://chrome.google.com/webstore/detail/blackout/epmieacohbnladjdcjinfajhepbfaakl"><img alt="Chrome Web Store" src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/YT2Grfi9vEBa2wAPzhWa.png"></a>
 </p>
 <h2 align="center">OLED DARK</h2>
 <br/>
