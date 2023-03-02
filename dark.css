@@ -8,9 +8,13 @@
     filter: contrast(var(--blackout-contrast-balance, 0.8));
   }
 
-  /* Zoom arrow fix */
-  .speaker-bar-container__arrow {
-    border: solid #ccc !important;
+  img,
+  video,
+  svg,
+  canvas,
+  .speaker-bar-container__arrow,
+  .ytp-volume-slider-handle {
+    color-scheme: light only;
   }
 
   html:not(:has(meta[content='only light']) *::-webkit-scrollbar-track {
