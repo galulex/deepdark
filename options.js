@@ -4,9 +4,10 @@ const save = event => {
 }
 
 const load = () => {
-  chrome.storage.sync.get({ tab2window: false, contrast: 0.4 }, ({ tab2window, contrast }) => {
+  chrome.storage.sync.get({ tab2window: false, contrast: 0.4, darkMedia: false }, ({ tab2window, contrast, darkMedia }) => {
     window.tab2window.checked = tab2window
     window.contrast.value = contrast
+    window.darkMedia.checked = darkMedia
   })
 }
 
@@ -19,8 +20,9 @@ const preview = (event) => {
   document.documentElement.style.setProperty('--contrast', 1 + +(value))
 }
 
-document.getElementById('tab2window').addEventListener('change', save)
-document.getElementById('contrast').addEventListener('change', save)
-document.getElementById('contrast').addEventListener('change', preview)
-document.getElementById('settingsLink').addEventListener('click', openLink)
+window.tab2window.addEventListener('change', save)
+window.contrast.addEventListener('change', save)
+window.darkMedia.addEventListener('change', save)
+window.contrast.addEventListener('change', preview)
+window.settingsLink.addEventListener('click', openLink)
 document.addEventListener('DOMContentLoaded', load)
