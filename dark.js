@@ -4,10 +4,8 @@ const setTheme = () => {
   meta.content = '#000000'
   document.head.appendChild(meta)
 
-  chrome.storage.sync.get({ contrast: '0.4', darkMedia: false }, ({ contrast, darkMedia }) => {
-    document.documentElement.style.setProperty('--blackout-contrast', 1 + +(contrast))
-    const unContrast = (+(contrast) / (darkMedia ? 4 : 2))
-    document.documentElement.style.setProperty('--blackout-contrast-balance', 1 - unContrast )
+  chrome.storage.sync.get({ contrast: '1.4' }, ({ contrast }) => {
+    document.documentElement.style.setProperty('--blackout-contrast', +(contrast))
   })
 }
 

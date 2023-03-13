@@ -1,11 +1,20 @@
 @media (prefers-color-scheme: dark) {
   html:not(img):not(video):not(button):not(a):not(canvas):not(svg):not(:has(meta[content='only light'])) {
-    filter: contrast(var(--blackout-contrast, 1.4));
+    filter: brightness(0.9) contrast(var(--blackout-contrast, 1.4));
     background-color: #000 !important;
   }
 
-  html:not(:has(meta[content='only light'])) img, video, button, a, svg, canvas, [data-a-target="player-overlay-click-handler"] {
-    filter: contrast(var(--blackout-contrast-balance, 0.8));
+  html:not(:has(meta[content='only light'])) img,
+  video,
+  button,
+  a,
+  svg,
+  canvas,
+  iframe,
+  [data-a-target="player-overlay-click-handler"],
+  [style*="background-image"] {
+    --blackout-uncontrast: calc(1 + ((1 - var(--blackout-contrast, 1.4)) / 2));
+    filter: contrast(var(--blackout-uncontrast, 0.8)) brightness(103%);
   }
 
   img,
@@ -15,6 +24,10 @@
   .speaker-bar-container__arrow,
   .ytp-volume-slider-handle {
     color-scheme: light only;
+  }
+
+  .ListItem:not(.selected):not(:hover) a.ListItem-button {
+    background: transparent !important;
   }
 
   html:not(:has(meta[content='only light']) *::-webkit-scrollbar-track {
