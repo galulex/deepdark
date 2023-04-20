@@ -1,4 +1,4 @@
-chrome.tabs.onUpdated.addListener(tabToWindow)
+chrome.tabs.onCreated.addListener(tabToWindow)
 chrome.action.onClicked.addListener(onClick)
 
 chrome.scripting.getRegisteredContentScripts().then((result) => {
@@ -43,14 +43,13 @@ const handleStorageChanges = async (changes, namespace) => {
 
 chrome.storage.onChanged.addListener(handleStorageChanges);
 
-async function tabToWindow(id, { url }, { windowId }) {
+async function tabToWindow({ id: tabId, windowId }) {
   const { tab2window } = await chrome.storage.sync.get()
-  if (!tab2window || !url) return
+  if (!tab2window) return
+
   const tabs = await chrome.tabs.query({ windowId })
   if (tabs.length < 2) return
-  chrome.tabs.remove(id, () => {
-    chrome.windows.create({ url, focused: true })
-  })
+  chrome.windows.create({ setSelfAsOpener: true, tabId})
 }
 
 async function onClick(tab) {
