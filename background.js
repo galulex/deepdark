@@ -1,4 +1,5 @@
 chrome.tabs.onCreated.addListener(tabToWindow)
+chrome.tabs.onRemoved.addListener(focusParent)
 chrome.action.onClicked.addListener(onClick)
 
 chrome.scripting.getRegisteredContentScripts().then((result) => {
@@ -49,8 +50,18 @@ async function tabToWindow({ id: tabId, windowId }) {
 
   const tabs = await chrome.tabs.query({ windowId })
   if (tabs.length < 2) return
-  chrome.windows.create({ setSelfAsOpener: true, tabId})
+
+  const win = await chrome.windows.create({ focused: true, tabId}, (win) => {
+    setTimeout(() => {
+      chrome.windows.update(win.id, { focused: true })
+    }, 100)
+  })
 }
+
+async function focusParent(id, info) {
+  const win = await chrome.windows.getLastFocused()
+}
+
 
 async function onClick(tab) {
   let urls;
