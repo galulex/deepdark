@@ -1,6 +1,10 @@
 chrome.tabs.onCreated.addListener(tabToWindow)
 chrome.tabs.onRemoved.addListener(focusParent)
 chrome.action.onClicked.addListener(onClick)
+chrome.commands.onCommand.addListener(async (_, tab) => {
+  if (!tab) return
+  onClick(tab)
+});
 
 chrome.scripting.getRegisteredContentScripts().then((result) => {
   if (!(result || []).some((v) => v.id == "darkVersion")) {

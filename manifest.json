@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "BlaCKout",
   "description": "Enable deep dark mode for web pages and dev tools. Saves energy with OLED screens like on Mac M1 Pro.",
-  "version": "1.3",
+  "version": "1.4",
   "icons": {
     "128": "128.png"
   },
@@ -23,5 +23,12 @@
   "options_ui": {
     "page": "options.html",
     "open_in_tab": false
+  },
+  "commands": {
+    "toggle": {
+      "suggested_key": "Ctrl+Shift+D",
+      "mac": "Command+Shift+D",
+      "description": "Toggle Dark Mode"
+    }
   }
 }
