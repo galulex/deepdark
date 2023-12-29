@@ -7,6 +7,8 @@ const setTheme = () => {
   chrome.storage.sync.get({ contrast: '1.4' }, ({ contrast }) => {
     document.documentElement.style.setProperty('--blackout-contrast', +(contrast))
   })
+  setTimeout(() => document.body.style.marginLeft = "1px", 50)
+  setTimeout(() => document.body.style.marginLeft = "0px", 100)
 }
 
 setTheme()
