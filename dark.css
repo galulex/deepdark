@@ -41,4 +41,14 @@
   html:not(:has(meta[content='only light'])) *::-webkit-scrollbar-track {
     background-color: black;
   }
+
+  :is(.wcJUvc, .hnGhZ)::-webkit-scrollbar {
+    width: 8px !important;
+    height: 8px !important;
+  }
+
+  :is(.wcJUvc, .hnGhZ)::-webkit-scrollbar-thumb {
+    border-width: 0px !important;
+    transition: background .3s;
+  }
 }
