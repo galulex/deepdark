@@ -38,7 +38,7 @@
     background: transparent !important;
   }
 
-  html:not(:has(meta[content='only light']) *::-webkit-scrollbar-track {
+  html:not(:has(meta[content='only light'])) *::-webkit-scrollbar-track {
     background-color: black;
   }
 }
