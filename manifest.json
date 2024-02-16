@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "BlaCKout",
   "description": "Enable deep dark mode for web pages and dev tools. Saves energy with OLED screens like on Mac M1 Pro.",
-  "version": "1.5",
+  "version": "1.7",
   "icons": {
     "128": "128.png"
   },
@@ -11,7 +11,6 @@
   },
   "devtools_page": "devtools.html",
   "permissions": [
-    "scripting",
     "storage"
   ],
   "host_permissions": [
@@ -20,6 +19,15 @@
   "background": {
     "service_worker": "background.js"
   },
+  "content_scripts": [
+    {
+      "matches": ["https://*/*", "http://*/*"],
+      "css": ["dark.css"],
+      "js": ["page.js"],
+      "match_about_blank": true,
+      "ran_at": "document_start"
+    }
+  ],
   "options_ui": {
     "page": "options.html",
     "open_in_tab": false

@@ -29,19 +29,16 @@
     color-scheme: light only;
   }
 
-  html::selection {
+  html:not(:has(meta[content='only light']))::selection {
     color: black !important;
     background-color: #d3d3d3;
-  }
-
-  .ListItem:not(.selected):not(:hover) a.ListItem-button {
-    background: transparent !important;
   }
 
   html:not(:has(meta[content='only light'])) *::-webkit-scrollbar-track {
     background-color: black;
   }
 
+  /* Google Calendar scrollbar fix */
   :is(.wcJUvc, .hnGhZ)::-webkit-scrollbar {
     width: 8px !important;
     height: 8px !important;
@@ -50,5 +47,9 @@
   :is(.wcJUvc, .hnGhZ)::-webkit-scrollbar-thumb {
     border-width: 0px !important;
     transition: background .3s;
+  }
+
+  :is(.wcJUvc, .hnGhZ):hover::-webkit-scrollbar-thumb {
+    background: rgb(218,220,224) !important;
   }
 }

@@ -1,10 +1,10 @@
 const save = event => {
   const { target: { checked, value, name, type } } = event
-  chrome.storage.sync.set({ [name]: ['checkbox'].includes(type) ? checked : value })
+  chrome.storage.local.set({ [name]: ['checkbox'].includes(type) ? checked : value })
 }
 
 const load = () => {
-  chrome.storage.sync.get({ tab2window: false, contrast: 1.4 }, ({ tab2window, contrast }) => {
+  chrome.storage.local.get({ tab2window: false, contrast: 1.4 }, ({ tab2window, contrast }) => {
     window.tab2window.checked = tab2window
     window.contrast.value = contrast
   })
