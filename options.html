@@ -4,11 +4,19 @@
     <title>Settings</title>
   </head>
   <style type="text/css" media="screen">
+    :root {
+      --accent: #9cd1ff;
+      --bg: #292a2d;
+      --color: white;
+    }
+
     body {
-      background-color: #2C2C2F;
-      color: #FFF;
+      background-color: var(--bg);
+      color: var(--color);
       padding: 1rem;
       min-height: 500px;
+      width: 100vw;
+      max-width: 440px;
     }
 
     label {
@@ -21,26 +29,102 @@
       vertical-align: middle;
     }
 
-    .link {
-      text-decoration: underline;
+    img {
+      pointer-events: none;
+      user-select: none;
+    }
+
+    button {
       cursor: pointer;
-      color: #9cd1ff;
+      color: var(--accent);
+      padding: 8px 16px;
+      user-select: none;
+      color: var(--accent);
+      font-weight: bold;
+      border: 1px solid #5f6368;
+      border-radius: 4px;
+      background: var(--bg);
+      -webkit-tap-highlight-color: transparent;
+      outline-offset: 1rem;
+      outline-color: transparent;
+      transition: all .3s;
+
+      &:active {
+        background: black linear-gradient(rgba(255, 255, 255, .06), rgba(255, 255, 255, .06));
+        box-shadow: 0 3px 6px 2px rgba(0,0,0,.15);
+      }
+
+      &:hover {
+        box-shadow: inset 3px 6px 2px rgba(0, 0, 0, .15);
+      }
+
+      &:focus {
+        outline-offset: 1px;
+        outline-color: var(--accent);
+      }
     }
 
-    datalist {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      width: 200px;
-    }
-
-    option {
-      padding: 0;
-    }
-
-    input[type="range"] {
-      width: 200px;
+    legend {
+      user-select: none;
       margin: 0;
+    }
+
+
+    fieldset {
+      border: none;
+
+      input[type="range"] {
+        width: 200px;
+        margin: 0;
+        accent-color: var(--acent);
+        cursor: pointer;
+        outline-offset: 2rem;
+        outline-color: transparent;
+        transition: outline-color .3s, outline-offset .3s;
+        color: var(--accent);
+        height: 4px;
+
+        &:focus {
+          outline-offset: 1rem;
+          outline-color: var(--accent);
+        }
+
+        &::-webkit-slider-runnable-track {
+          height: 10px;
+          margin-bottom: -30px;
+          padding-bottom: 20px;
+          padding-top: 0;
+        }
+
+        &::-webkit-slider-thumb {
+          margin-top: -14px;
+        }
+      }
+
+      datalist {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 200px;
+        pointer-events: none;
+        user-select: none;
+
+        option {
+          padding: 5px 4px;
+        }
+      }
+    }
+
+    input[type="checkbox"] {
+      accent-color: var(--acent);
+      outline-offset: 10px;
+      outline-color: transparent;
+      transition: outline-color .3s, outline-offset .3s;
+
+      &:focus {
+        outline-offset: 2px;
+        outline-color: var(--accent);
+      }
     }
 
     .preview {
@@ -51,27 +135,36 @@
     summary {
       user-select: none;
       cursor: pointer;
+      outline-offset: 2rem;
+      outline-color: transparent;
+      transition: outline-color .3s, outline-offset .3s;
+
+      &:focus {
+        outline-offset: 0.5rem;
+        outline-color: var(--accent);
+      }
     }
   </style>
   <body>
     <p>
-      Enable <a class="link" id="settingsLink">Auto Dark Mode for Web Contents</a> flag
+      Enable <button id="settingsLink" type="button">Auto Dark Mode for Web Contents</button> flag
     </p>
     <p>
-      <small>Enabled with selective inversion of non-image elements</small> is recommended
+      <samp>Enabled with selective inversion of non-image elements</samp> is recommended
     </p>
-    <label for="contrast">Contrast</label>
-    <br>
-    <input type="range" min="1.0" max="1.5" step="0.1" id="contrast" name="contrast" list="contrasts"/>
-    <br>
-    <datalist id='contrasts'>
-      <option value="1.0">0</option>
-      <option value="1.1">1</option>
-      <option value="1.2">2</option>
-      <option value="1.3">3</option>
-      <option value="1.4">4</option>
-      <option value="1.5">5</option>
-    </datalist>
+    <fieldset>
+      <legend>Contrast</legend>
+      <input type="range" min="1.0" max="1.5" step="0.1" id="contrast" name="contrast" list="contrasts"/>
+      <br>
+      <datalist id='contrasts'>
+        <option value="1.0">0</option>
+        <option value="1.1">1</option>
+        <option value="1.2">2</option>
+        <option value="1.3">3</option>
+        <option value="1.4">4</option>
+        <option value="1.5">5</option>
+      </datalist>
+    </fieldset>
     <br>
     <img src="colorbands.png" class="preview"/>
     <br>
