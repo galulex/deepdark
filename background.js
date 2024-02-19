@@ -4,7 +4,7 @@ chrome.commands.onCommand.addListener(async (_, tab) => {
   if (tab) onClick(tab)
 })
 
-async function tabToWindow({ id: tabId, windowId, width }) {
+async function tabToWindow({ id: tabId, windowId }) {
   const { tab2window } = await chrome.storage.local.get()
   if (!tab2window) return
 
