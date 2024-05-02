@@ -53,3 +53,7 @@
     background: rgb(218,220,224) !important;
   }
 }
+
+html:has(meta[content='only light']) iframe {
+  color-scheme: only light;
+}

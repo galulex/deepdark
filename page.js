@@ -23,11 +23,7 @@ const dom = {
 const callback = (element, name, content) => {
   const observerCallback = (_, observer) => {
     const meta = dom[element]
-    if (meta?.content === content) return
-
-    observer.disconnect()
-    setMeta(element, name, content)
-    observer.observe(document.head, config)
+    if (meta.content !== content) setMeta(element, name, content)
   }
 
   return observerCallback
