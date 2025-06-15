@@ -1,24 +1,24 @@
 @media (prefers-color-scheme: dark) {
-  html:not(:has(:fullscreen)):not(img):not(video):not(button):not(a):not(canvas):not(svg):not(:has(meta[content='only light'])) {
-    filter: brightness(0.9) contrast(var(--blackout-contrast, 1.4));
+  html:not(:has(meta[content='only light'])):not(:has(:fullscreen)):not(:has(body > img:only-child)) {
+    filter: contrast(var(--blackout-contrast, 1.4));
     background-color: #000 !important;
+
+    *:is(img, video, button, a:not(:has(img)), svg, canvas, iframe, [style*="background-image"]) {
+      --blackout-uncontrast: calc(1 + ((1 - var(--blackout-contrast, 1.4)) / 2));
+      filter: contrast(var(--blackout-uncontrast, 0.8));
+    }
+
+    *::-webkit-scrollbar-track {
+      background-color: black;
+    }
+
+    &::selection {
+      color: black !important;
+      background-color: #d3d3d3;
+    }
   }
 
-  html:not(:has(meta[content='only light'])):not(:has(:fullscreen)) :is(
-    img,
-    video,
-    button,
-    a:not(:has(img)),
-    svg,
-    canvas,
-    iframe,
-    [data-a-target="player-overlay-click-handler"],
-    [style*="background-image"]
-  ) {
-    --blackout-uncontrast: calc(1 + ((1 - var(--blackout-contrast, 1.4)) / 2));
-    filter: contrast(var(--blackout-uncontrast, 0.8)) brightness(103%);
-  }
-
+  /* Fixes chrome color inversion bugs */
   img,
   video,
   svg,
@@ -27,30 +27,6 @@
   .volume-slider__slider-container,
   .ytp-volume-slider-handle {
     color-scheme: light only;
-  }
-
-  html:not(:has(meta[content='only light']))::selection {
-    color: black !important;
-    background-color: #d3d3d3;
-  }
-
-  html:not(:has(meta[content='only light'])) *::-webkit-scrollbar-track {
-    background-color: black;
-  }
-
-  /* Google Calendar scrollbar fix */
-  :is(.wcJUvc, .hnGhZ)::-webkit-scrollbar {
-    width: 8px !important;
-    height: 8px !important;
-  }
-
-  :is(.wcJUvc, .hnGhZ)::-webkit-scrollbar-thumb {
-    border-width: 0px !important;
-    transition: background .3s;
-  }
-
-  :is(.wcJUvc, .hnGhZ):hover::-webkit-scrollbar-thumb {
-    background: rgb(218,220,224) !important;
   }
 }
 
